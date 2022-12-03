@@ -6,7 +6,8 @@ services:
         environment:
             JUPYTER_TOKEN: "docker"
         build: .
-        image: local_stable_diffusion_v2
+        #image: local_stable_diffusion_v2
+        image: pytorch_stable_diffusion_v2
         command: nvidia-smi
         deploy:
           resources:

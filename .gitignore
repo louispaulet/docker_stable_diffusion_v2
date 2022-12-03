@@ -4,11 +4,8 @@ __pycache__/
 *$py.class
 
 # working project files
-OLD_RUNS/
-project/
-output_imgs/
-input_imgs/
-images/
+project/models/
+project/images/
 
 
 # C extensions

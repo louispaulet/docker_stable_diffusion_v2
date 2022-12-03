@@ -1,22 +1,21 @@
-#get latest pytorch env (nightly for functorch)
-FROM ghcr.io/pytorch/pytorch-nightly:latest
+#get latest pytorch env
+FROM pytorch/pytorch
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV PATH /opt/conda/bin:$PATH
 
-RUN set -eux; \
-    apt-get update -y && apt-get install -y \
-       python3 python3-pip \
-    ; \
-    rm -rf /var/lib/apt/lists/*
+# set bash as current shell
+RUN chsh -s /bin/bash
+SHELL ["/bin/bash", "-c"]
+
+RUN apt-get update -y && apt-get install -y python3 python3-pip
 
 # needed for triton and xformers
 RUN apt-get update -y && apt-get -y install git
 
 # install diffusers and helpers
-RUN /bin/bash -c "pip install --upgrade diffusers[torch]"
-RUN pip install --upgrade diffusers transformers scipy numpy==1.23.4 protobuf
-RUN pip install accelerate ftfy
+RUN pip install --upgrade diffusers[torch]
+RUN pip install --upgrade diffusers transformers scipy numpy==1.23.4 protobuf accelerate ftfy
 
 # build triton for xformers
 RUN git clone https://github.com/openai/triton.git;
