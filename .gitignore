@@ -5,7 +5,9 @@ __pycache__/
 
 # working project files
 project/models/
+project/scheduler/
 project/images/
+project/image_to_image/
 
 
 # C extensions
